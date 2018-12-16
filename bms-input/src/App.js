@@ -56,12 +56,21 @@ class App extends Component {
       this.setState({duplicates: duplicates, uniques: uniques});
     } else if (uniques.length) {
       this.setState({duplicates: duplicates, uniques: uniques});
+      this.postData(duplicates,uniques);
     } else {
       this.setState({duplicates: [], uniques: []});
     }
     return duplicates;
   }
 
+  postData = (duplicates,uniques) => {
+    fetch('http://localhost:4000/setdata', {
+      method: 'post',
+      body: JSON.stringify({"data":{"duplicates": duplicates, "uniques": uniques}})
+    }).then(res => {
+      alert('added to redis');
+    });
+  }
   checkRange(val) {
     if (val.indexOf('-') > -1) {
       val = val.split('-');
