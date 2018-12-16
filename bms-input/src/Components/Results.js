@@ -6,7 +6,17 @@ const Results = (props) => {
   //     {r.name}
   //   </li>
   // ))
-  return <div className="message">{props.results[0]}</div>
+
+  return <div className="message">
+      {props.results.length>0?
+          <div><div className="title">
+              {props.title}
+          </div>
+          <div className="numbers">
+              {props.results.join(',')}
+        </div></div>
+        : <div/>}
+  </div>
 }
 
 export default Results
